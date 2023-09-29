@@ -1,4 +1,2 @@
 
-<main>
-    <div><p>You entered a new room!!!</p></div>
-</main>
+    <div><p>You have entered a new room!!!</p></div>
