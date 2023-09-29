@@ -1,5 +1,4 @@
 <script>
-  import './styles.css';
   import batLogo from './../assets/Edouard-Joseph-dAlton-bat.jpg'
   import Counter from './../lib/Counter.svelte'
   import CreateRoom from './../lib/CreateRoom.svelte';
@@ -25,12 +24,6 @@
 </main>
 
 <style>
-  main {
-    flex: 1;
-    display: flex;
-    place-items: center;
-    flex-direction: column;
-	}
   .logo {
     height: 30em;
     padding: 1.5em;
