@@ -4,7 +4,7 @@
 </script>
 
 <main>
-  <h1>Goblin 𓃛 Thermomancer</h1>
+  <h1>Goblin 𓃛 Archive</h1>
   <slot />
 
 
