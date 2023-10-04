@@ -7,11 +7,13 @@
 
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
+    let isWebSocketConnected = false;
     
 
     //enabling send message when connection is open
     mywsServer.onopen = function() {
         console.log("connected!")
+        isWebSocketConnected = true;
     }
     //handling message event
     mywsServer.onmessage = function(event) {
@@ -26,29 +28,12 @@
     }
 
 
-    $: sendDataToServer({"userData": $userData});
+    $: if (isWebSocketConnected)
+        sendDataToServer({"userData": $userData});
 
-    async function sendDataToServer(data){
-        await checkConnection();
+    function sendDataToServer(data){
         mywsServer.send(JSON.stringify(data));
     }
-
-    let connection_resolvers = [];
-    let checkConnection = () => {
-        return new Promise((resolve, reject) => {
-            if (mywsServer.readyState === WebSocket.OPEN) {
-                resolve();
-            }
-            else {
-                connection_resolvers.push({resolve, reject});
-            }
-        });
-    }
-
-    mywsServer.addEventListener('open', () => {
-        connection_resolvers.forEach(r => r.resolve())
-    });
-
 </script>
 
 <div>

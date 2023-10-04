@@ -4,16 +4,14 @@
 
   let batDesciption = "An illustration by Edouard Joseph d’Alton of a bat's squeleton";
 </script>
-
+    <CreateRoom />
   <div>
     <a href="https://www.dmsguild.com/product/352670/Mordenkainen-in-Barovia" target="_blank" rel="noreferrer">
       <img src={batLogo} class="logo" title={batDesciption} alt={batDesciption} />
     </a>
   </div>
 
-  <div class="card">
-    <CreateRoom />
-  </div>
+
 
 
 <style>
