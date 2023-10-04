@@ -1,39 +1,20 @@
 <script>
-    let characterName;
-    let initiativeModifier=0;
-    let uid; 
+    import userData from "$lib/userData"
+    
 
-    characterName = localStorage.getItem("characterName");
-    initiativeModifier = localStorage.getItem("initiativeModifier");
-    uid = localStorage.getItem("uid");
-    console.log(`local stored uid: ${uid}`);
-
-    if (! uid){
-        console.log("no hay uid");
-        uid = crypto.randomUUID();
-        console.log(`new uid: ${uid}`);
-        localStorage.setItem("uid", uid)    
-    }
-
-    async function save(event){
-        event.preventDefault();
-		localStorage.setItem("characterName", characterName);
-		localStorage.setItem("initiativeModifier", initiativeModifier);
-    }
 </script>
 <div class="form-container">
     <form>
         <label for="characterName">Character name:</label>
         <br>
-        <input type="text" id="characterName" name="characterName" bind:value={characterName}>
+        <input type="text" id="characterName" name="characterName" bind:value={$userData.characterName}>
         <br>
         <label for="initiativeModifier">Initiative modifier:</label>
         <br>
         <div class="slidecontainer">
-            <input type="range" min="-5" max="5" bind:value={initiativeModifier} class="slider" id="initiativeModifier" name="initiativeModifier">
-            <span id="sliderValue">{initiativeModifier}</span>
+            <input type="range" min="-5" max="5" bind:value={$userData.initiativeModifier} class="slider" id="initiativeModifier" name="initiativeModifier">
+            <span id="sliderValue">{$userData.initiativeModifier}</span>
         </div>	
-        <button on:click={save}>Save</button>
     </form>
 </div>
 
