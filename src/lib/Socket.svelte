@@ -25,18 +25,29 @@
         myMessages[myMessages.length] = text 
     }
 
-    $: sendDataToServer($userData);
 
-    function sendDataToServer(data){
-        //console.log(data);
+    $: sendDataToServer({"userData": $userData});
+
+    async function sendDataToServer(data){
+        await checkConnection();
+        mywsServer.send(JSON.stringify(data));
     }
-    /*onMount(() => {
-       const unsubcribe = $userData.subscribe(...);
-        return () => {
-            unsubscribe();
-        };
-    });*/
 
+    let connection_resolvers = [];
+    let checkConnection = () => {
+        return new Promise((resolve, reject) => {
+            if (mywsServer.readyState === WebSocket.OPEN) {
+                resolve();
+            }
+            else {
+                connection_resolvers.push({resolve, reject});
+            }
+        });
+    }
+
+    mywsServer.addEventListener('open', () => {
+        connection_resolvers.forEach(r => r.resolve())
+    });
 
 </script>
 
