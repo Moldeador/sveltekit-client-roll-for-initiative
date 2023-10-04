@@ -1,8 +1,9 @@
 <script>
+    import {goto} from '$app/navigation'
     async function createRoom(){
         let response = await fetch(`${location.protocol}//${location.hostname}:3000/rooms`, {method: "POST"});
         let slug = await response.text();
-        location.href = `./rooms/${slug}`;
+        goto(`/rooms/${slug}`);
     }
 
 </script>

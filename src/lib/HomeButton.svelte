@@ -1,6 +1,7 @@
 <script>
+    import {goto} from '$app/navigation'
     async function goHome(){
-        location.href = `/`;
+        goto('/');
     }
 
 </script>
