@@ -1,20 +1,27 @@
 <script>
     import userData from "$lib/userData"
     
+    let characterName = $userData.characterName;
+    let initiativeModifier = $userData.initiativeModifier
+    function saveUserData(){
+        $userData.characterName = characterName;
+        $userData.initiativeModifier = initiativeModifier;
+    }
 
 </script>
 <div class="form-container">
-    <form>
+    <form on:submit|preventDefault={saveUserData}>
         <label for="characterName">Character name:</label>
         <br>
-        <input type="text" id="characterName" name="characterName" bind:value={$userData.characterName}>
+        <input type="text" id="characterName" name="characterName" bind:value={characterName}>
         <br>
         <label for="initiativeModifier">Initiative modifier:</label>
         <br>
         <div class="slidecontainer">
-            <input type="range" min="-5" max="5" bind:value={$userData.initiativeModifier} class="slider" id="initiativeModifier" name="initiativeModifier">
-            <span id="sliderValue">{$userData.initiativeModifier}</span>
-        </div>	
+            <input type="range" min="-5" max="5" bind:value={initiativeModifier} class="slider" id="initiativeModifier" name="initiativeModifier">
+            <span id="sliderValue">{initiativeModifier}</span>
+        </div>
+        <input type="submit" value="Submit">
     </form>
 </div>
 

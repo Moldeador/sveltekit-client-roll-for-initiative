@@ -1,4 +1,5 @@
 <script>
+    import userData from "$lib/userData"
 
     //Websocekt variables
     const pathname = window.location.pathname;
@@ -23,6 +24,19 @@
         let text = `${from} says: ${msg}`
         myMessages[myMessages.length] = text 
     }
+
+    $: sendDataToServer($userData);
+
+    function sendDataToServer(data){
+        //console.log(data);
+    }
+    /*onMount(() => {
+       const unsubcribe = $userData.subscribe(...);
+        return () => {
+            unsubscribe();
+        };
+    });*/
+
 
 </script>
 
