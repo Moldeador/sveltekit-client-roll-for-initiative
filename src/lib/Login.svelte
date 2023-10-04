@@ -1,13 +1,20 @@
 <script>
     let characterName;
-    let initiativeModifier=0; 
-    //if (typeof window !== 'undefined') {
-        console.log('we are running on the client');
-        characterName = localStorage.getItem("characterName");
-        initiativeModifier = localStorage.getItem("initiativeModifier");
-    //} else {
-    //    console.log('we are running on the server');
-    //}
+    let initiativeModifier=0;
+    let uid; 
+
+    characterName = localStorage.getItem("characterName");
+    initiativeModifier = localStorage.getItem("initiativeModifier");
+    uid = localStorage.getItem("uid");
+    console.log(`local stored uid: ${uid}`);
+
+    if (! uid){
+        console.log("no hay uid");
+        uid = crypto.randomUUID();
+        console.log(`new uid: ${uid}`);
+        localStorage.setItem("uid", uid)    
+    }
+
     async function save(event){
         event.preventDefault();
 		localStorage.setItem("characterName", characterName);
