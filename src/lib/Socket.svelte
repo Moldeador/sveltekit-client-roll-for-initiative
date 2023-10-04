@@ -52,7 +52,7 @@
 </script>
 
 <div>
-    <p>This is a new web socket connection:</p>
+    <h3>This is a new web socket connection:</h3>
 
     {#each myMessages as message}
     <div>{message}</div>
