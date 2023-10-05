@@ -9,6 +9,7 @@
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
     let isWebSocketConnected = false;
+    let usersData = "eeeee";
     
 
     //enabling send message when connection is open
@@ -20,6 +21,10 @@
     mywsServer.onmessage = function(event) {
         const { data } = event
         msgGeneration(data, "Server")
+        const receivedMessageObject = JSON.parse(data);
+        if (receivedMessageObject.event === "listOfUsers"){
+            usersData = receivedMessageObject["data"];
+        }
     }
 
     //Creating DOM element to show received messages on browser page
@@ -30,19 +35,18 @@
 
 
     $: if (isWebSocketConnected)
-        sendDataToServer({"userData": $userData});
+        sendDataToServer({event: "userData", data: $userData});
 
     function sendDataToServer(data){
         mywsServer.send(JSON.stringify(data));
     }
 
-    let usersData = "eeeee";
 </script>
 
 <div>
-    <h3>This is a new web socket connection:</h3>
 
     <ListOfUsers {usersData}/>
+    <h4>Messages from the websocket</h4>
     {#each myMessages as message}
     <div>{message}</div>
     {/each}
