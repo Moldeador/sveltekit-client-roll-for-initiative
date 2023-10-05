@@ -1,6 +1,7 @@
 <script>
     import userData from "$lib/userData"
-
+    import ListOfUsers from "$lib/ListOfUsers.svelte";
+    
     //Websocekt variables
     const pathname = window.location.pathname;
     const socketUrl = `ws://localhost:3000${pathname}`;
@@ -34,11 +35,14 @@
     function sendDataToServer(data){
         mywsServer.send(JSON.stringify(data));
     }
+
+    let usersData = "eeeee";
 </script>
 
 <div>
     <h3>This is a new web socket connection:</h3>
 
+    <ListOfUsers {usersData}/>
     {#each myMessages as message}
     <div>{message}</div>
     {/each}
