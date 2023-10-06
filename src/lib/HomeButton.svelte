@@ -7,5 +7,5 @@
 </script>
 
 <button on:click={goHome}>
-    Home
+    <i class="fa-solid fa-home"></i>
 </button>

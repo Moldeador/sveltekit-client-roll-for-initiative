@@ -4,6 +4,7 @@
 
   let batDesciption = "An illustration by Edouard Joseph d’Alton of a bat's squeleton";
 </script>
+  <h1>Goblin 𓃛 Archive</h1>
     <CreateRoom />
   <div>
     <a href="https://www.dmsguild.com/product/352670/Mordenkainen-in-Barovia" target="_blank" rel="noreferrer">

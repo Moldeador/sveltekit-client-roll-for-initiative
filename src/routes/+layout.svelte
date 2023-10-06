@@ -1,10 +1,10 @@
 <script>
   import './styles.css';
   import Counter from '$lib/Counter.svelte'
+  import '@fortawesome/fontawesome-free/css/all.min.css';
 </script>
 
 <main>
-  <h1>Goblin 𓃛 Archive</h1>
   <slot />
 
 
