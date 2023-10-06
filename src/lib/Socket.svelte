@@ -46,9 +46,11 @@
 <div>
 
     <ListOfUsers {usersData}/>
+    <!--
     <h4>Messages from the websocket</h4>
     {#each myMessages as message}
     <div>{message}</div>
     {/each}
+    -->
 </div>
 

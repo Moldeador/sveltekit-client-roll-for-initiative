@@ -12,7 +12,9 @@
     </a>
   </div>
 
-
+  <div class="card">
+    <Counter />
+  </div>
 
 
 <style>
