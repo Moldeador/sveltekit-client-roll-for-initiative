@@ -1,12 +1,17 @@
 <script>
     import userData from "$lib/userData"
     export let method = "";
-    
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
+
     let characterName = $userData.characterName;
     let initiativeModifier = $userData.initiativeModifier
     function saveUserData(){
         $userData.characterName = characterName;
         $userData.initiativeModifier = initiativeModifier;
+		dispatch('submitted');
     }
 
 </script>

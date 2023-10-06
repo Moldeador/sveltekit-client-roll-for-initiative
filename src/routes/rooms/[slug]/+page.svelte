@@ -7,6 +7,7 @@
 	import Modal from '$lib/Modal.svelte';
 
 	let showModal = ($userData.characterName==='') ? true: false;
+	let closeModal = false;
 
 </script>
 
@@ -16,8 +17,8 @@
 	<HomeButton />
 </div>
 
-<Modal bind:showModal>
-	<Login method={"dialog"}/>
+<Modal bind:showModal bind:closeModal>
+	<Login on:submitted={()=>{closeModal=true}} />
 </Modal>
 
 <div><p>{$userData.characterName} has entered the room!</p></div>

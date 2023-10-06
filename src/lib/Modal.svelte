@@ -1,9 +1,11 @@
 <script>
 	export let showModal; // boolean
+	export let closeModal; // boolean
 
 	let dialog; // HTMLDialogElement
 
 	$: if (dialog && showModal) dialog.showModal();
+	$: if (closeModal) {dialog.close(); closeModal = false;}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
