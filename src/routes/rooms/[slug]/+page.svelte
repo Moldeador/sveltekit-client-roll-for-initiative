@@ -3,29 +3,25 @@
     import Socket from '$lib/Socket.svelte'
     import userData from "$lib/userData"
     import HomeButton from '$lib/HomeButton.svelte'
+	import CharacterSettingsButton from '$lib/CharacterSettingsButton.svelte';
 	import Modal from '$lib/Modal.svelte';
 
-	let showModal = false;
+	let showModal = ($userData.characterName==='') ? true: false;
 
 </script>
 
 <div class="top-navigation">
-<button on:click={() => (showModal = true)}>
-    <i class="fa-solid fa-hat-wizard"></i>
-</button>
-<h3>Roll for initiative!</h3>
-<HomeButton />
+	<CharacterSettingsButton on:click={() => (showModal = true)} />
+	<h3>Roll for initiative!</h3>
+	<HomeButton />
 </div>
-
-
-
 
 <Modal bind:showModal>
 	<Login method={"dialog"}/>
 </Modal>
 
-
 <div><p>{$userData.characterName} has entered the room!</p></div>
+
 <Socket />
 
 <style>
