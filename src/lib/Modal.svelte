@@ -1,18 +1,17 @@
 <script>
-	export let showModal; // boolean
-	export let closeModal; // boolean
-
+	export function showModal() {
+		dialog.showModal();
+	}
+	export function closeModal() {
+		dialog.close();
+	}
 	let dialog; // HTMLDialogElement
-
-	$: if (dialog && showModal) dialog.showModal();
-	$: if (closeModal) {dialog.close(); closeModal = false;}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
+	on:click|self={closeModal}
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>

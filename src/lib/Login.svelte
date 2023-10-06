@@ -11,7 +11,7 @@
     function saveUserData(){
         $userData.characterName = characterName;
         $userData.initiativeModifier = initiativeModifier;
-		dispatch('submitted');
+		dispatch('submit');
     }
 
 </script>

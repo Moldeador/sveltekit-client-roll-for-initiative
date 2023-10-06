@@ -5,20 +5,26 @@
     import HomeButton from '$lib/HomeButton.svelte'
 	import CharacterSettingsButton from '$lib/CharacterSettingsButton.svelte';
 	import Modal from '$lib/Modal.svelte';
+    import { onMount } from 'svelte';
 
-	let showModal = ($userData.characterName==='') ? true: false;
-	let closeModal = false;
+	let showModal;
+	let closeModal;
 
+	onMount(() => {
+		if ($userData.characterName==='') {
+			showModal();
+		}
+	});
 </script>
 
 <div class="top-navigation">
-	<CharacterSettingsButton on:click={() => (showModal = true)} />
+	<CharacterSettingsButton on:click={showModal} />
 	<h3>Roll for initiative!</h3>
 	<HomeButton />
 </div>
 
 <Modal bind:showModal bind:closeModal>
-	<Login on:submitted={()=>{closeModal=true}} />
+	<Login on:submit={closeModal} />
 </Modal>
 
 <div><p>{$userData.characterName} has entered the room!</p></div>
