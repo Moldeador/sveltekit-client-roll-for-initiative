@@ -2,7 +2,7 @@
     export let usersData;
 </script>
 
-<div class="users-holder">
+<div class="usersHolder">
     {#each usersData as user}
     <div class="user">
         <div class="toprow">{user.characterName}</div>
@@ -15,7 +15,7 @@
 </div>
 
 <style>
-.users-holder {
+.usersHolder {
     display: flex;
     width: 100%;
     height: 100%;

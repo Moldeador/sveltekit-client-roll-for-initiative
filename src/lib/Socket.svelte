@@ -1,6 +1,5 @@
 <script>
     import userData from "$lib/userData"
-    import ListOfUsers from "$lib/ListOfUsers.svelte";
     
     //Websocekt variables
     const pathname = window.location.pathname;
@@ -9,7 +8,9 @@
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
     let isWebSocketConnected = false;
-    let usersData = "eeeee";
+    export let usersData;
+    export let roomState;
+
     
 
     //enabling send message when connection is open
@@ -24,6 +25,8 @@
         const receivedMessageObject = JSON.parse(data);
         if (receivedMessageObject.event === "listOfUsers"){
             usersData = receivedMessageObject["data"];
+        } else if (receivedMessageObject.event === "roomState"){
+            roomState = receivedMessageObject["data"];
         }
     }
 
@@ -37,14 +40,13 @@
     $: if (isWebSocketConnected)
         sendDataToServer({event: "userData", data: $userData});
 
-    function sendDataToServer(data){
+    export function sendDataToServer(data){
         mywsServer.send(JSON.stringify(data));
     }
 
 </script>
 
 
-    <ListOfUsers {usersData}/>
     <!--
     <h4>Messages from the websocket</h4>
     {#each myMessages as message}

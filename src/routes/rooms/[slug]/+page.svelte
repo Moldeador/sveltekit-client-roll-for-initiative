@@ -1,10 +1,12 @@
 <script>
     import Login from '$lib/Login.svelte'
     import Socket from '$lib/Socket.svelte'
+    import ListOfUsers from '$lib/ListOfUsers.svelte'
     import userData from "$lib/userData"
     import HomeButton from '$lib/HomeButton.svelte'
 	import CharacterSettingsButton from '$lib/CharacterSettingsButton.svelte';
 	import Modal from '$lib/Modal.svelte';
+	import StateOfTheRoom from '$lib/StateOfTheRoom.svelte';
     import { onMount } from 'svelte';
 
 	let showModal;
@@ -15,28 +17,36 @@
 			showModal();
 		}
 	});
+
+	let usersData = [];
+	let roomState = "StartEncounter";
+
+	let sendDataToServer = null;
 </script>
 
 <Modal bind:showModal bind:closeModal>
 	<Login on:submit={closeModal} />
 </Modal>
 
+<Socket bind:usersData bind:roomState bind:sendDataToServer/>
 
-<div class="top-navigation">
+<div class="topNavigation">
 	<CharacterSettingsButton on:click={showModal} />
 	<p>Roll for initiative!</p>
 	<HomeButton />
 </div>
 
-<div class="center"></div>
+<div class="center">
+	<StateOfTheRoom {roomState} {sendDataToServer}/>
+</div>
 
 
-<div class="socket">
-	<Socket />
+<div class="listOfUsers">
+    <ListOfUsers {usersData}/>
 </div>
 
 <style>
-    .top-navigation{
+    .topNavigation{
 		flex: 0 0 3em;
 		display: flex;
 		flex-flow: row wrap;
@@ -50,7 +60,7 @@
 
 	}
 
-	.socket{
+	.listOfUsers{
 		flex: 0 0 10em;
 		border: 1px groove black;
 	}
