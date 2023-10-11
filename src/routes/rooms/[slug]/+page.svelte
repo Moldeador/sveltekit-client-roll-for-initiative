@@ -24,7 +24,7 @@
 
 <div class="top-navigation">
 	<CharacterSettingsButton on:click={showModal} />
-	<h3>Roll for initiative!</h3>
+	<p>Roll for initiative!</p>
 	<HomeButton />
 </div>
 
@@ -37,23 +37,21 @@
 
 <style>
     .top-navigation{
+		flex: 0 0 3em;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
-		background-color: rebeccapurple;
-		border: 2px solid black;
+		border: 1px groove black;
     }
 
 	.center{
-		flex-basis: 300px;
-		background-color: green;
-		border: 2px solid black;
+		flex-grow: 1;
+		border: 1px groove black;
 
 	}
 
 	.socket{
-		background-color: darkred;
-		border: 2px solid black;
-
+		flex: 0 0 10em;
+		border: 1px groove black;
 	}
 </style>

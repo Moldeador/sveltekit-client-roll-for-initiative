@@ -28,9 +28,6 @@ main {
   height: 100vh;
   box-sizing: border-box;
   justify-content: space-around;
-  background-color: burlywood;
-  padding: 10px;
-  border: 2px solid black;
 }
 body {
   margin: 0;

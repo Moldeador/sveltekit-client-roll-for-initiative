@@ -17,7 +17,7 @@
 </script>
 
 
-<form on:submit={saveUserData} method={method}>
+<form on:submit|preventDefault={saveUserData} method={method}>
     <label for="characterName">Character name:</label>
     <br>
     <input type="text" id="characterName" name="characterName" bind:value={characterName}>

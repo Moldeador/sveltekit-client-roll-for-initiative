@@ -43,7 +43,6 @@
 
 </script>
 
-<div>
 
     <ListOfUsers {usersData}/>
     <!--
@@ -52,5 +51,4 @@
     <div>{message}</div>
     {/each}
     -->
-</div>
 

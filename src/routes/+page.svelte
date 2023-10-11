@@ -1,6 +1,7 @@
 <script>
   import batLogo from './../assets/Edouard-Joseph-dAlton-bat.jpg'
   import CreateRoom from './../lib/CreateRoom.svelte';
+  import Counter from '$lib/Counter.svelte'
 
   let batDesciption = "An illustration by Edouard Joseph d’Alton of a bat's squeleton";
 </script>
