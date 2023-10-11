@@ -33,9 +33,6 @@
     border: 1px solid black;
 }
 
-.toprow{
-
-}
 
 .bottomrow{
     display: flex;
