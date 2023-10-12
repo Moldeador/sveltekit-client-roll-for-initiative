@@ -10,6 +10,7 @@
     let isWebSocketConnected = false;
     export let usersData;
     export let roomState;
+    export let isAdmin = false;
 
     
 
@@ -27,6 +28,8 @@
             usersData = receivedMessageObject["data"];
         } else if (receivedMessageObject.event === "roomState"){
             roomState = receivedMessageObject["data"];
+        } else if (receivedMessageObject.event === "youAreAdmin"){
+            isAdmin = true;
         }
     }
 

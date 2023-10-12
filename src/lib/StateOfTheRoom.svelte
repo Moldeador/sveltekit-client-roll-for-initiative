@@ -1,6 +1,8 @@
 <script>
     export let roomState;
     export let sendDataToServer;
+    export let isAdmin = false;
+
     function handleChangeState(){
         sendDataToServer({event: "roomState", data: "initiativeRoll"})
     }
@@ -9,7 +11,9 @@
 <div class="stateOfTheRoomHolder">
 
     <div class="sign">State of Room: {roomState}</div>
+    {#if isAdmin}
     <button on:click={handleChangeState}>Change State</button>
+    {/if}
 </div>
 
 <style>
