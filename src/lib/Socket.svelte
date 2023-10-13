@@ -12,6 +12,8 @@
     export let roomState;
     export let isAdmin = false;
     export let roll;
+    export let turnOrder;
+
 
     
 
@@ -33,6 +35,9 @@
             isAdmin = true;
         } else if (receivedMessageObject.event === "roll"){
             roll = receivedMessageObject["data"];
+        } else if (receivedMessageObject.event === "turnOrder"){
+            const allUsersData = receivedMessageObject["data"];
+            turnOrder = allUsersData[$userData.uid];
         }
     }
 

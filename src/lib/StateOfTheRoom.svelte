@@ -3,6 +3,7 @@
     export let sendDataToServer;
     export let isAdmin = false;
     export let roll;
+    export let turnOrder;
 
     function handleChangeState(){
         sendDataToServer({event: "roomState", data: "initiativeRoll"})
@@ -15,13 +16,19 @@
 
 <div class="stateOfTheRoomHolder">
 
-    <div class="sign">State of Room: {roomState}</div>
-    {#if isAdmin && roomState==="waitingForDM"}
-        <button on:click={handleChangeState}>Change State</button>
+    {#if roomState==="waitingForDM"}
+        {#if isAdmin===true}
+            <button on:click={handleChangeState}>Start Combat</button>
+        {:else}
+            <div class="sign">Waiting for DM</div>
+            
+        {/if}
     {:else if roomState==="initiativeRoll"}
         <button on:click={handleRollForInitiative}>Roll for initiative!</button>
+        <div class="sign">Your Roll: {roll}</div>
+    {:else if roomState==="turnOrder"}
+        <div class="sign">turn order: {turnOrder}</div>
     {/if}
-    <div class="sign">Your Roll: {roll}</div>
 </div>
 
 <style>

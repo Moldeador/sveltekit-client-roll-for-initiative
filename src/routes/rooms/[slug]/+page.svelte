@@ -22,6 +22,7 @@
 	let roomState = "";
 	let isAdmin = false;
 	let roll;
+	let turnOrder;
 
 	let sendDataToServer = null;
 </script>
@@ -30,7 +31,7 @@
 	<Login on:submit={closeModal} />
 </Modal>
 
-<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin bind:roll/>
+<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin bind:roll bind:turnOrder/>
 
 <div class="topNavigation">
 	<CharacterSettingsButton on:click={showModal} />
@@ -39,7 +40,7 @@
 </div>
 
 <div class="center">
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {roll}/>
+	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {roll} {turnOrder}/>
 </div>
 
 
