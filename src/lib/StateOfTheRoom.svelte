@@ -6,13 +6,19 @@
     function handleChangeState(){
         sendDataToServer({event: "roomState", data: "initiativeRoll"})
     }
+
+    function handleRollForInitiative(){
+        sendDataToServer({event: "roll"})
+    }
 </script>
 
 <div class="stateOfTheRoomHolder">
 
     <div class="sign">State of Room: {roomState}</div>
-    {#if isAdmin}
-    <button on:click={handleChangeState}>Change State</button>
+    {#if isAdmin && roomState==="waitingForDM"}
+        <button on:click={handleChangeState}>Change State</button>
+    {:else if roomState==="initiativeRoll"}
+        <button on:click={handleRollForInitiative}>Roll for initiative!</button>
     {/if}
 </div>
 

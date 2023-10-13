@@ -19,7 +19,7 @@
 	});
 
 	let usersData = [];
-	let roomState = "StartEncounter";
+	let roomState = "";
 	let isAdmin = false;
 
 	let sendDataToServer = null;
