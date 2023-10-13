@@ -11,6 +11,7 @@
     export let usersData;
     export let roomState;
     export let isAdmin = false;
+    export let roll;
 
     
 
@@ -30,6 +31,8 @@
             roomState = receivedMessageObject["data"];
         } else if (receivedMessageObject.event === "youAreAdmin"){
             isAdmin = true;
+        } else if (receivedMessageObject.event === "roll"){
+            roll = receivedMessageObject["data"];
         }
     }
 

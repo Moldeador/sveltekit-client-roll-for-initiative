@@ -21,6 +21,7 @@
 	let usersData = [];
 	let roomState = "";
 	let isAdmin = false;
+	let roll;
 
 	let sendDataToServer = null;
 </script>
@@ -29,7 +30,7 @@
 	<Login on:submit={closeModal} />
 </Modal>
 
-<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin/>
+<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin bind:roll/>
 
 <div class="topNavigation">
 	<CharacterSettingsButton on:click={showModal} />
@@ -38,7 +39,7 @@
 </div>
 
 <div class="center">
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin}/>
+	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {roll}/>
 </div>
 
 
