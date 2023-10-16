@@ -63,12 +63,6 @@
     justify-content: center;
     gap: 10px;
 }
-
-.sign{
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-}
 .user{
     display: flex;
     flex-direction: column;
