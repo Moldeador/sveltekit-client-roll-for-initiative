@@ -6,7 +6,14 @@
     {#each usersData as user}
     <div class="user">
         <div class="toprow">{user.characterName}</div>
-        <div class="bottomrow">{user.initiativeModifier}</div>
+        {#if user.roll===null}
+            <div class="bottomrow">{user.initiativeModifier}</div>
+        {:else if user.turnOrder===null}
+
+            <div class="bottomrow">{user.roll} + {user.initiativeModifier}</div>
+        {:else}
+            <div class="bottomrow">{user.turnOrder}</div>
+        {/if}
     </div>
     
     
