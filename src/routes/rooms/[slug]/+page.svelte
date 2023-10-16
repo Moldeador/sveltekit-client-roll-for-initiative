@@ -38,7 +38,7 @@
 </div>
 
 <div class="center">
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} />
+	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {usersData}/>
 </div>
 
 
