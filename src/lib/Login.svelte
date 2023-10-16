@@ -6,11 +6,11 @@
 	const dispatch = createEventDispatcher();
 
 
-    let characterName = $userData.characterName;
-    let initiativeModifier = $userData.initiativeModifier
+    let characterName = $userData.characters[0].characterName;
+    let initiativeModifier = $userData.characters[0].initiativeModifier
     function saveUserData(){
-        $userData.characterName = characterName;
-        $userData.initiativeModifier = initiativeModifier;
+        $userData.characters[0].characterName = characterName;
+        $userData.characters[0].initiativeModifier = initiativeModifier;
 		dispatch('submit');
     }
 

@@ -13,7 +13,7 @@
 	let closeModal;
 
 	onMount(() => {
-		if ($userData.characterName==='') {
+		if ($userData.characters[0].characterName==='') {
 			showModal();
 		}
 	});
