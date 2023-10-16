@@ -27,7 +27,7 @@
         const { data } = event
         msgGeneration(data, "Server")
         const receivedMessageObject = JSON.parse(data);
-        if (receivedMessageObject.event === "listOfUsers"){
+        if (receivedMessageObject.event === "listOfCharacters"){
             usersData = receivedMessageObject["data"];
         } else if (receivedMessageObject.event === "roomState"){
             roomState = receivedMessageObject["data"];
