@@ -10,12 +10,20 @@
 	const dispatch = createEventDispatcher();
 
 
-    let characterName = $userData.characters[characterId].characterName;
-    let initiativeModifier = $userData.characters[characterId].initiativeModifier
+    let characterName;
+    let initiativeModifier;
+
     function saveUserData(){
         $userData.characters[characterId].characterName = characterName;
         $userData.characters[characterId].initiativeModifier = initiativeModifier;
 		dispatch('submit');
+    }
+
+    $: updateInitialValues(characterId); 
+
+    function updateInitialValues(characterId){
+        characterName = $userData.characters[characterId].characterName;
+        initiativeModifier = $userData.characters[characterId].initiativeModifier;
     }
 
 </script>
