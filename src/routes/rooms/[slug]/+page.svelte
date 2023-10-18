@@ -45,7 +45,7 @@
 </div>
 
 <div class="center">
-	<YourCharacters {showModal} bind:characterId/>
+	<YourCharacters {charactersData} {roomState} {showModal} bind:characterId/>
 </div>
 
 <div class="stateOfGame">
