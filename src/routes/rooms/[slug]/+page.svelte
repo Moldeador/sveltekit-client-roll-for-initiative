@@ -8,6 +8,7 @@
 	import StateOfTheRoom from '$lib/StateOfTheRoom.svelte';
     import { onMount } from 'svelte';
     import YourCharacters from '$lib/YourCharacters.svelte';
+    import AddCharacterButton from '$lib/AddCharacterButton.svelte';
 
 	let showModal;
 	let closeModal;
@@ -24,14 +25,9 @@
 
 	let sendDataToServer = null;
 
-	$: numberOfCharacters = $userData["characters"].length;
 	let characterId = 0;
 
-	function handleAddCharacter(){
-		$userData["characters"].push({characterName:"", initiativeModifier:0});
-		characterId = numberOfCharacters;
-		showModal();
-	}
+
 
 
 </script>
@@ -45,7 +41,7 @@
 <div class="topNavigation">
 	<HomeButton />
 	<p>Roll for initiative!</p>
-	<button on:click={handleAddCharacter} title="Add an extra character"><i class="fa-solid fa-square-plus"></i></button>
+	<AddCharacterButton {showModal} bind:characterId/>
 </div>
 
 <div class="center">
