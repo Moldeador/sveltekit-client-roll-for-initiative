@@ -1,25 +1,25 @@
 <script>
-    export let usersData;
+    export let charactersData;
 </script>
 
-<div class="usersHolder">
-    {#each usersData as user}
-        <div class="user">
-            <div class="toprow">{user.characterName}</div>
-            {#if user.roll===null}
-                <div class="bottomrow">{user.initiativeModifier}</div>
-            {:else if user.turnOrder===null}
+<div class="charactersHolder">
+    {#each charactersData as character}
+        <div class="character">
+            <div class="toprow">{character.characterName}</div>
+            {#if character.roll===null}
+                <div class="bottomrow">{character.initiativeModifier}</div>
+            {:else if character.turnOrder===null}
 
-                <div class="bottomrow">{user.roll} + {user.initiativeModifier}</div>
+                <div class="bottomrow">{character.roll} + {character.initiativeModifier}</div>
             {:else}
-                <div class="bottomrow">{user.turnOrder}</div>
+                <div class="bottomrow">{character.turnOrder}</div>
             {/if}
         </div>
     {/each}
 </div>
 
 <style>
-.usersHolder {
+.charactersHolder {
     display: flex;
     width: 100%;
     height: 100%;
@@ -28,7 +28,7 @@
     gap: 10px;
 }
 
-.user{
+.character{
     display: flex;
     flex-direction: column;
     text-align: center;

@@ -9,5 +9,5 @@
 </script>
 
 <button on:click={createRoom}>
-    Create room
+    Create new encounter
 </button>

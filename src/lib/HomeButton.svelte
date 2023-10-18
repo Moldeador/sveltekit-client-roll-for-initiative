@@ -6,6 +6,6 @@
 
 </script>
 
-<button on:click={goHome}>
+<button on:click={goHome} title="Home">
     <i class="fa-solid fa-home"></i>
 </button>

@@ -2,7 +2,7 @@
     export let roomState;
     export let sendDataToServer;
     export let isAdmin = false;
-    export let usersData;
+    export let charactersData;
 
 
     function handleChangeState(){
@@ -12,6 +12,16 @@
     function handleRollForInitiative(){
         sendDataToServer({event: "roll"})
     }
+
+    function isRollPending(charactersData){
+        for (const character of charactersData){
+            if (character.isMe) if (character.roll===null) return true; 
+        }
+        return false;
+    }
+
+    $: rollIsPending = isRollPending(charactersData);
+
 </script>
 
 <div class="stateOfTheRoomHolder">
@@ -24,32 +34,12 @@
                 <div class="bottomrow">Waiting for DM to start the encounter...</div>
             </div>
         {/if}
-    {:else if roomState==="initiativeRoll"}
-        {#each usersData as user}
-            {#if user.isMe}
-                {#if user.roll===null}
-                    <div class="user">
-                        <div class="toprow">Your Init Mod</div>
-                        <div class="bottomrow">{user.initiativeModifier}</div>
-                    </div> 
+    {:else if (roomState==="initiativeRoll")}
+        {#if rollIsPending}
                     <button on:click={handleRollForInitiative}>Roll for initiative!</button>
-                {:else}
-                    <div class="user">
-                        <div class="toprow">Your Roll</div>
-                        <div class="bottomrow">{user.roll} + {user.initiativeModifier}</div>
-                    </div> 
-                {/if}
-            {/if}
-        {/each}
-    {:else if roomState==="turnOrder"}
-        {#each usersData as user}
-            {#if user.isMe}
-                <div class="user">
-                    <div class="toprow">Your Turn Order</div>
-                    <div class="bottomrow">{user.turnOrder}</div>
-                </div> 
-            {/if}
-        {/each}
+        {:else}
+            <div>You have already rolled.</div>
+        {/if}
     {/if}
 </div>
 

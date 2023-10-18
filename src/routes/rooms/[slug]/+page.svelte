@@ -4,10 +4,10 @@
     import ListOfUsers from '$lib/ListOfUsers.svelte'
     import userData from "$lib/userData"
     import HomeButton from '$lib/HomeButton.svelte'
-	import CharacterSettingsButton from '$lib/CharacterSettingsButton.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import StateOfTheRoom from '$lib/StateOfTheRoom.svelte';
     import { onMount } from 'svelte';
+    import YourCharacters from '$lib/YourCharacters.svelte';
 
 	let showModal;
 	let closeModal;
@@ -18,7 +18,7 @@
 		}
 	});
 
-	let usersData = [];
+	let charactersData = [];
 	let roomState = "";
 	let isAdmin = false;
 
@@ -33,47 +33,31 @@
 		showModal();
 	}
 
-	function handleEditCharacter(id){
-		characterId = id;
-		showModal();
-	}
 
-	function handleDeleteCharacter(id){
-		$userData["characters"].splice(id, 1);
-		$userData = $userData;
-	}
 </script>
 
 <Modal bind:showModal bind:closeModal>
 	<Login on:submit={closeModal} {characterId}/>
 </Modal>
 
-<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin />
+<Socket bind:charactersData bind:roomState bind:sendDataToServer bind:isAdmin />
 
 <div class="topNavigation">
-	<CharacterSettingsButton on:click={showModal} />
-	<p>Roll for initiative!</p>
 	<HomeButton />
+	<p>Roll for initiative!</p>
+	<button on:click={handleAddCharacter} title="Add an extra character"><i class="fa-solid fa-square-plus"></i></button>
 </div>
 
 <div class="center">
-	<div class="usersHolder">
-		{#each $userData.characters as character, index}
-			<div class="user">
-				<div class="toprow">{character.characterName}<button on:click={()=>handleDeleteCharacter(index)} style="font-size:7px"><i class="fa-solid fa-xmark"></i></button> </div>
-				<div class="bottomrow">{character.initiativeModifier}</div>
-				<button on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-user-gear"></i></button>
-
-			</div>
-		{/each}
-				<button on:click={handleAddCharacter}><i class="fa-solid fa-square-plus"></i></button>
-	</div>
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {usersData}/>
+	<YourCharacters {showModal} bind:characterId/>
 </div>
 
+<div class="stateOfGame">
+	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {charactersData}/>
+</div>
 
 <div class="listOfUsers">
-    <ListOfUsers {usersData} />
+    <ListOfUsers {charactersData} />
 </div>
 
 <style>
@@ -93,42 +77,15 @@
 
 	}
 
-	.listOfUsers{
-		flex: 0 0 10em;
+	.stateOfGame{
+		flex: 0 0 3em;
 		border: 1px groove black;
 	}
 
-
-	.usersHolder {
-		display: flex;
-		width: 100%;
-		height: 100%;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
+	.listOfUsers{
+		flex: 0 0 8em;
+		border: 1px groove black;
 	}
 
-	.user{
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		width: 100px;
-		height: 100px;
-		border: 1px solid black;
-	}
-
-	.toprow{
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.bottomrow{
-		display: flex;
-		border: 1px solid black;
-		align-items: center;
-		justify-content: center;
-		flex-grow: 1;
-		font-size: 2em;    
-	}
 
 </style>
