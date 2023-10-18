@@ -1,5 +1,7 @@
 <script>
     export let charactersData;
+    export let roomState;
+    $: if (roomState==="turnOrder") charactersData.sort((a,b)=>a["turnOrder"]-b["turnOrder"]);
 </script>
 
 <div class="charactersHolder">

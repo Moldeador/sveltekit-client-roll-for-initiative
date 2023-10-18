@@ -53,7 +53,7 @@
 </div>
 
 <div class="listOfUsers">
-    <ListOfUsers {charactersData} />
+    <ListOfUsers {charactersData} {roomState} />
 </div>
 
 <style>
@@ -69,13 +69,10 @@
 		display: flex;
 		flex-flow: column;
 		flex-grow: 1;
-		border: 1px groove black;
-
 	}
 
 	.stateOfGame{
 		flex: 0 0 3em;
-		border: 1px groove black;
 	}
 
 	.listOfUsers{
