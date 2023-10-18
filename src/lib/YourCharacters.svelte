@@ -17,9 +17,9 @@
 
 
 
-<div class="usersHolder">
+<div class="charactersHolder" style:grid-template-columns="repeat({$userData.characters.length < 2 ? 1 : 2}, 1fr)">
     {#each $userData.characters as character, index}
-        <div class="user">
+        <div class="character">
             <div class="toprow">{character.characterName}<button on:click={()=>handleDeleteCharacter(index)} style="font-size:7px"><i class="fa-solid fa-xmark"></i></button> </div>
             <div class="bottomrow">{character.initiativeModifier}</div>
             <button on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-user-gear"></i></button>
@@ -31,21 +31,19 @@
 
 <style>
 
-	.usersHolder {
-		display: flex;
+	.charactersHolder {
+		display: grid;
 		width: 100%;
 		height: 100%;
-		align-items: center;
-		justify-content: center;
 		gap: 10px;
 	}
 
-	.user{
+	.character{
 		display: flex;
 		flex-direction: column;
 		text-align: center;
-		width: 100px;
-		height: 100px;
+		width: 100%;
+		height: 100%;
 		border: 1px solid black;
 	}
 
