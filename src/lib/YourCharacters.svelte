@@ -23,6 +23,7 @@
 
 	{#if roomState==="waitingForDM"}
 		{#each $userData.characters as character, index}
+			<section>
 			<div class="character">
 				<div class="toprow">
 						<button on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-user-gear"></i></button>
@@ -30,43 +31,56 @@
 						<button on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-xmark"></i></button>
 				</div>
 				<div class="bottomrow">
-					<div>{character.initiativeModifier}</div>
+					{character.initiativeModifier}
+					<div class="bottomrow-label">Initiative Modifier</div>
 				</div>
-				<div class="initiativeModifierLabel">Initiative Modifier</div>
 			</div>
+			</section>
 		{/each}
 	{:else if roomState==="initiativeRoll"}
 		{#each charactersData as character}
 			{#if character.isMe}
 				{#if character.roll === null}
+					<section>
 					<div class="character">
 						<div class="toprow">
 								{character.characterName}
 						</div>
-						<div class="bottomrow">{character.initiativeModifier}</div>
-						<div class="initiativeModifierLabel">Initiative Modifier</div>
+						<div class="bottomrow">
+							{character.initiativeModifier}
+							<div class="bottomrow-label">Initiative Modifier</div>
+						</div>
 					</div>
+					</section>
 				{:else}
+					<section>
 					<div class="character">
 						<div class="toprow">
 								{character.characterName}
 						</div>
-						<div class="bottomrow">{character.roll}+{character.initiativeModifier}</div>
-						<div class="initiativeModifierLabel">Your Roll</div>
+						<div class="bottomrow">
+							{character.roll}+{character.initiativeModifier}
+							<div class="bottomrow-label">Your Roll</div>
+						</div>
 					</div>
+					</section>
 				{/if}
 			{/if}
 		{/each}
 	{:else if roomState==="turnOrder"}
 		{#each charactersData as character}
 			{#if character.isMe}
+				<section>
 				<div class="character">
 					<div class="toprow">
 							{character.characterName}
 					</div>
-					<div class="bottomrow">{character.turnOrder}</div>
-					<div class="initiativeModifierLabel">Turn Order</div>
+					<div class="bottomrow">
+						{character.turnOrder}
+						<div class="bottomrow-label">Turn Order</div>
+					</div>
 				</div>
+				</section>
 			{/if}
 		{/each}
 	{/if}
@@ -80,15 +94,24 @@
 		width: 100%;
 		height: 100%;
 		grid-gap: 10px;
+		background-color: #F2BA52;
 	}
 
+	section{
+		display: flex;
+  		justify-content: center;
+  		align-items: center;
+	}
 	.character{
+		border-radius: 10px;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
+		max-width: 200px;
+		max-height: 300px;
 		width: 100%;
 		height: 100%;
-		border: 1px solid black;
+		background-color: #8C2C2330;
 	}
 
 	.toprow{
@@ -97,17 +120,26 @@
 	}
 
 	.bottomrow{
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		border: 1px solid black;
 		align-items: center;
 		justify-content: center;
 		flex-grow: 1;
 		font-size: 2em;    
+		padding-bottom: 24px;
 	}
 
-	.initiativeModifierLabel{
-		font-size: x-small;
+	.bottomrow-label{
+		position: absolute;
+		font-size:medium;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: white;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 
 
