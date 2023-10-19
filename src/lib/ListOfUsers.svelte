@@ -9,12 +9,21 @@
         <div class="character">
             <div class="toprow">{character.characterName}</div>
             {#if character.roll===null}
-                <div class="bottomrow">{character.initiativeModifier}</div>
+                <div class="bottomrow">
+                    {character.initiativeModifier}
+                    <div class="bottomrow-label">Init. Mod.</div>
+                </div>
             {:else if character.turnOrder===null}
 
-                <div class="bottomrow">{character.roll} + {character.initiativeModifier}</div>
+                <div class="bottomrow">
+                    {character.roll} + {character.initiativeModifier}
+                    <div class="bottomrow-label">Roll</div>
+                </div>
             {:else}
-                <div class="bottomrow">{character.turnOrder}</div>
+                <div class="bottomrow">
+                    {character.turnOrder}
+                    <div class="bottomrow-label">Turn Order</div>
+                </div>
             {/if}
         </div>
     {/each}
@@ -28,16 +37,18 @@
     align-items: center;
     gap: 10px;
     overflow-x: auto;
+    background-color: #F2BA52;
 }
 
 .character{
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     text-align: center;
     width: 100px;
     height: 100px;
-    border: 1px solid black;
     flex-shrink: 0;
+    background-color: #8C2C2330;
 }
 
 .character:first-child{
@@ -49,6 +60,7 @@
 }
 
 .toprow{
+    padding: 0 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -56,11 +68,24 @@
 
 .bottomrow{
     display: flex;
-    border: 1px solid black;
+    position: relative;
+    padding-bottom: 20px;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
     font-size: 2em;    
+}
+
+.bottomrow-label{
+  position: absolute;
+  font-size: x-small;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 
