@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 
 function getInitialUid(){
     let uid = localStorage.getItem("uid");
-    if (! uid) uid = crypto.randomUUID();
+    if (! uid) uid = "id" + Math.random().toString(16).slice(2);
     return uid;
 }
 const userData = new writable(

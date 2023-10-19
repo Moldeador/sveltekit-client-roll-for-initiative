@@ -3,7 +3,9 @@
     
     //Websocekt variables
     const pathname = window.location.pathname;
-    const socketUrl = `ws://localhost:3000${pathname}`;
+    console.log(`protocol: ${location.protocol}`);
+    const protocol = (location.protocol === "https:") ? "wss:" : "ws:";
+    const socketUrl = `${protocol}//${location.hostname}:3000${pathname}`;
 
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
