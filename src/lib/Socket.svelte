@@ -5,7 +5,8 @@
     const pathname = window.location.pathname;
     console.log(`protocol: ${location.protocol}`);
     const protocol = (location.protocol === "https:") ? "wss:" : "ws:";
-    const socketUrl = `${protocol}//${location.hostname}:3000${pathname}`;
+    const port = (location.hostname==='rollforinitiative.goblinarchive.com') ? '/api' : ':3000'; 
+    const socketUrl = `${protocol}//${location.hostname}${port}${pathname}`;
 
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
