@@ -26,9 +26,9 @@
 			<section>
 			<div class="character">
 				<div class="toprow">
-						<button on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-user-gear"></i></button>
+						<button class="icon" on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-wand-sparkles"></i></button>
 						{character.characterName}
-						<button on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-xmark"></i></button>
+						<button class="icon" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
 				</div>
 				<div class="bottomrow">
 					{character.initiativeModifier}
@@ -43,7 +43,7 @@
 				{#if character.roll === null}
 					<section>
 					<div class="character">
-						<div class="toprow">
+						<div class="toprow no-buttons">
 								{character.characterName}
 						</div>
 						<div class="bottomrow">
@@ -55,7 +55,7 @@
 				{:else}
 					<section>
 					<div class="character">
-						<div class="toprow">
+						<div class="toprow no-buttons">
 								{character.characterName}
 						</div>
 						<div class="bottomrow">
@@ -72,7 +72,7 @@
 			{#if character.isMe}
 				<section>
 				<div class="character">
-					<div class="toprow">
+					<div class="toprow no-buttons">
 							{character.characterName}
 					</div>
 					<div class="bottomrow">
@@ -94,7 +94,6 @@
 		width: 100%;
 		height: 100%;
 		grid-gap: 10px;
-		background-color: #F2BA52;
 	}
 
 	section{
@@ -103,7 +102,7 @@
   		align-items: center;
 	}
 	.character{
-		border-radius: 10px;
+		border-radius: 3px;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
@@ -111,12 +110,20 @@
 		max-height: 300px;
 		width: 100%;
 		height: 100%;
-		background-color: #8C2C2330;
+		background-color: var(--colour-light);
+		color: var(--colour-dark)
 	}
 
 	.toprow{
 		display: flex;
 		justify-content: space-between;
+		align-items: flex-start;
+		font-size: x-large;
+		color: var(--colour-shadow)
+	}
+
+	.toprow.no-buttons{
+		justify-content: center;
 	}
 
 	.bottomrow{
@@ -126,22 +133,39 @@
 		align-items: center;
 		justify-content: center;
 		flex-grow: 1;
-		font-size: 2em;    
+		font-size: 4em;    
 		padding-bottom: 24px;
+		color: var(--colour-dark)
 	}
 
 	.bottomrow-label{
 		position: absolute;
-		font-size:medium;
-		bottom: 0;
-		background-color: rgba(0, 0, 0, 0.5);
-		color: white;
+		font-size:small;
+		bottom: -2px;
+		background-color: var(--colour-dark);
+		color: var(--colour-light);
 		border-top-right-radius: 5px;
 		border-top-left-radius: 5px;
 		padding-left: 5px;
 		padding-right: 5px;
+
 	}
 
+
+button{
+    background-color: var(--colour-shadow);
+    color: var(--colour-ligth);
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	padding: 0.4em 0.4em;
+	border-radius: 3px;
+}
+
+i{
+	font-size: small;
+	color: var(--colour-light)
+}
 
     
 </style>

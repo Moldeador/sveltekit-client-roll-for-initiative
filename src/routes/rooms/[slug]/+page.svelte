@@ -38,31 +38,42 @@
 
 <Socket bind:charactersData bind:roomState bind:sendDataToServer bind:isAdmin />
 
-<div class="topNavigation">
-	<HomeButton />
-	<p>Roll for initiative!</p>
-	<AddCharacterButton {showModal} bind:characterId/>
-</div>
+<div class="room-page-holder">
+	<div class="topNavigation">
+		<HomeButton />
+		<p>Roll for initiative!</p>
+		<AddCharacterButton {showModal} bind:characterId/>
+	</div>
 
-<div class="center">
-	<YourCharacters {charactersData} {roomState} {showModal} bind:characterId/>
-</div>
+	<div class="center">
+		<YourCharacters {charactersData} {roomState} {showModal} bind:characterId/>
+	</div>
 
-<div class="stateOfGame">
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {charactersData}/>
-</div>
+	<div class="stateOfGame">
+		<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {charactersData}/>
+	</div>
 
-<div class="listOfUsers">
-    <ListOfUsers {charactersData} {roomState} />
+	<div class="listOfUsers">
+		<ListOfUsers {charactersData} {roomState} />
+	</div>
 </div>
 
 <style>
+	.room-page-holder{
+		display:flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+	}
     .topNavigation{
 		flex: 0 0 3em;
 		display: flex;
-		flex-flow: row wrap;
 		justify-content: space-between;
-		border: 1px groove black;
+		align-items: flex-start;
+		font-size: x-large;
+		justify-content: space-between;
+		align-items: flex-start;
+
     }
 
 	.center{
@@ -77,8 +88,8 @@
 
 	.listOfUsers{
 		flex: 0 0 8em;
-		border: 1px groove black;
 	}
+
 
 
 </style>

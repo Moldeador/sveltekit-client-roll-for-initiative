@@ -30,6 +30,8 @@
 </div>
 
 <style>
+
+
 .charactersHolder {
     display: flex;
     width: 100%;
@@ -37,7 +39,7 @@
     align-items: center;
     gap: 10px;
     overflow-x: auto;
-    background-color: #F2BA52;
+    background-color: var(--colour-dark);
 }
 
 .character{
@@ -45,10 +47,10 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     flex-shrink: 0;
-    background-color: #8C2C2330;
+    background-color: var(--colour-light);
 }
 
 .character:first-child{
@@ -64,6 +66,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: var(--colour-dark);
 }
 
 .bottomrow{
@@ -73,15 +76,16 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    font-size: 2em;    
+    font-size: 1em;    
+    color: var(--colour-dark);
 }
 
 .bottomrow-label{
   position: absolute;
-  font-size: x-small;
+  font-size: xx-small;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  background-color: var(--colour-dark);
+  color: var(--colour-light);
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   padding-left: 5px;
