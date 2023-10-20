@@ -4,65 +4,92 @@
     import ListOfUsers from '$lib/ListOfUsers.svelte'
     import userData from "$lib/userData"
     import HomeButton from '$lib/HomeButton.svelte'
-	import CharacterSettingsButton from '$lib/CharacterSettingsButton.svelte';
 	import Modal from '$lib/Modal.svelte';
 	import StateOfTheRoom from '$lib/StateOfTheRoom.svelte';
     import { onMount } from 'svelte';
+    import YourCharacters from '$lib/YourCharacters.svelte';
+    import AddCharacterButton from '$lib/AddCharacterButton.svelte';
 
 	let showModal;
 	let closeModal;
 
 	onMount(() => {
-		if ($userData.characterName==='') {
+		if ($userData.characters[0].characterName==='') {
 			showModal();
 		}
 	});
 
-	let usersData = [];
+	let charactersData = [];
 	let roomState = "";
 	let isAdmin = false;
 
 	let sendDataToServer = null;
+
+	let characterId = 0;
+
+
+
+
 </script>
 
 <Modal bind:showModal bind:closeModal>
-	<Login on:submit={closeModal} />
+	<Login on:submit={closeModal} {characterId}/>
 </Modal>
 
-<Socket bind:usersData bind:roomState bind:sendDataToServer bind:isAdmin />
+<Socket bind:charactersData bind:roomState bind:sendDataToServer bind:isAdmin />
 
-<div class="topNavigation">
-	<CharacterSettingsButton on:click={showModal} />
-	<p>Roll for initiative!</p>
-	<HomeButton />
-</div>
+<div class="room-page-holder">
+	<div class="topNavigation">
+		<HomeButton />
+		<p>Roll for initiative!</p>
+		<AddCharacterButton {showModal} bind:characterId/>
+	</div>
 
-<div class="center">
-	<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {usersData}/>
-</div>
+	<div class="center">
+		<YourCharacters {charactersData} {roomState} {showModal} bind:characterId/>
+	</div>
 
+	<div class="stateOfGame">
+		<StateOfTheRoom {roomState} {sendDataToServer} {isAdmin} {charactersData}/>
+	</div>
 
-<div class="listOfUsers">
-    <ListOfUsers {usersData}/>
+	<div class="listOfUsers">
+		<ListOfUsers {charactersData} {roomState} />
+	</div>
 </div>
 
 <style>
+	.room-page-holder{
+		display:flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+	}
     .topNavigation{
 		flex: 0 0 3em;
 		display: flex;
-		flex-flow: row wrap;
 		justify-content: space-between;
-		border: 1px groove black;
+		align-items: flex-start;
+		font-size: x-large;
+		justify-content: space-between;
+		align-items: flex-start;
+
     }
 
 	.center{
+		display: flex;
+		flex-flow: column;
 		flex-grow: 1;
-		border: 1px groove black;
+	}
 
+	.stateOfGame{
+		flex: 0 0 3em;
 	}
 
 	.listOfUsers{
-		flex: 0 0 10em;
-		border: 1px groove black;
+		flex: 0 0 8em;
 	}
+
+
+
 </style>

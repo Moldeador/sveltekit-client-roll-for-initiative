@@ -2,54 +2,51 @@
     export let roomState;
     export let sendDataToServer;
     export let isAdmin = false;
-    export let usersData;
+    export let charactersData;
 
 
-    function handleChangeState(){
+    function handleStartCombat(){
         sendDataToServer({event: "roomState", data: "initiativeRoll"})
+    }
+
+    function handleRestartEncounter(){
+        sendDataToServer({event: "roomState", data: "waitingForDM"})
     }
 
     function handleRollForInitiative(){
         sendDataToServer({event: "roll"})
     }
+
+    function isRollPending(charactersData){
+        for (const character of charactersData){
+            if (character.isMe) if (character.roll===null) return true; 
+        }
+        return false;
+    }
+
+    $: rollIsPending = isRollPending(charactersData);
+    $: roomState;
+
 </script>
 
 <div class="stateOfTheRoomHolder">
 
     {#if roomState==="waitingForDM"}
         {#if isAdmin===true}
-            <button on:click={handleChangeState}>Start Combat</button>
+            <button on:click={handleStartCombat}>Start Combat</button>
         {:else}
-            <div class="user">
-                <div class="bottomrow">Waiting for DM to start the encounter...</div>
-            </div>
+                <div>Waiting for DM to start the encounter...</div>
         {/if}
-    {:else if roomState==="initiativeRoll"}
-        {#each usersData as user}
-            {#if user.isMe}
-                {#if user.roll===null}
-                    <div class="user">
-                        <div class="toprow">Your Init Mod</div>
-                        <div class="bottomrow">{user.initiativeModifier}</div>
-                    </div> 
+    {:else if (roomState==="initiativeRoll")}
+        {#if rollIsPending}
                     <button on:click={handleRollForInitiative}>Roll for initiative!</button>
-                {:else}
-                    <div class="user">
-                        <div class="toprow">Your Roll</div>
-                        <div class="bottomrow">{user.roll} + {user.initiativeModifier}</div>
-                    </div> 
-                {/if}
-            {/if}
-        {/each}
-    {:else if roomState==="turnOrder"}
-        {#each usersData as user}
-            {#if user.isMe}
-                <div class="user">
-                    <div class="toprow">Your Turn Order</div>
-                    <div class="bottomrow">{user.turnOrder}</div>
-                </div> 
-            {/if}
-        {/each}
+        {:else}
+            <div>You have already rolled.</div>
+        {/if}
+    {:else if (roomState==="turnOrder")}
+        {#if isAdmin===true}
+            <button on:click={handleRestartEncounter}>Start New Encounter</button>
+        {/if}
     {/if}
 </div>
 
@@ -63,22 +60,10 @@
     justify-content: center;
     gap: 10px;
 }
-.user{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
+
+button{
+    background-color: var(--colour-shadow);
+    color: var(--colour-white)
 }
 
-
-.bottomrow{
-    display: flex;
-    border: 1px solid black;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    font-size: 1em;    
-}
 </style>

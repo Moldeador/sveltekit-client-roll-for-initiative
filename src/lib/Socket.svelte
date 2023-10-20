@@ -3,12 +3,14 @@
     
     //Websocekt variables
     const pathname = window.location.pathname;
-    const socketUrl = `ws://localhost:3000${pathname}`;
+    console.log(`protocol: ${location.protocol}`);
+    const protocol = (location.protocol === "https:") ? "wss:" : "ws:";
+    const socketUrl = `${protocol}//${location.hostname}:3000${pathname}`;
 
     const mywsServer = new WebSocket(socketUrl)
     let myMessages = []
     let isWebSocketConnected = false;
-    export let usersData;
+    export let charactersData;
     export let roomState;
     export let isAdmin = false;
 
@@ -26,7 +28,7 @@
         msgGeneration(data, "Server")
         const receivedMessageObject = JSON.parse(data);
         if (receivedMessageObject.event === "listOfCharacters"){
-            usersData = receivedMessageObject["data"];
+            charactersData = receivedMessageObject["data"];
         } else if (receivedMessageObject.event === "roomState"){
             roomState = receivedMessageObject["data"];
         } else if (receivedMessageObject.event === "youAreAdmin"){
@@ -49,12 +51,3 @@
     }
 
 </script>
-
-
-    <!--
-    <h4>Messages from the websocket</h4>
-    {#each myMessages as message}
-    <div>{message}</div>
-    {/each}
-    -->
-

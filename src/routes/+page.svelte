@@ -1,31 +1,37 @@
 <script>
-  import batLogo from './../assets/Edouard-Joseph-dAlton-bat.jpg'
   import CreateRoom from './../lib/CreateRoom.svelte';
-  import Counter from '$lib/Counter.svelte'
 
-  let batDesciption = "An illustration by Edouard Joseph d’Alton of a bat's squeleton";
 </script>
-  <h1>Goblin 𓃛 Archive</h1>
+
+<div class="main-page-holder">
+  <div class="big-title">
+    <h1>Roll for Initiative </h1>
+    <h1>𓃛</h1>
+  </div>
+  <div class="create-room">    
     <CreateRoom />
-  <div>
-    <a href="https://www.dmsguild.com/product/352670/Mordenkainen-in-Barovia" target="_blank" rel="noreferrer">
-      <img src={batLogo} class="logo" title={batDesciption} alt={batDesciption} />
-    </a>
   </div>
-
-  <div class="card">
-    <Counter />
-  </div>
-
+</div>
 
 <style>
-  .logo {
-    height: 30em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  .main-page-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em DarkRed);
+  .big-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+  .create-room{
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+
   }
 </style>
