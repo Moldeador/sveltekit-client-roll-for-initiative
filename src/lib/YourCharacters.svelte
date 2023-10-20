@@ -15,6 +15,9 @@
 		$userData["characters"].splice(id, 1);
 		$userData = $userData;
 	}
+
+	function withSign(n, withSpace) { return `${n < 0 ? '-' : '+'}${withSpace ? ' ' : ''}${Math.abs(n)}`; }
+
 </script>
 
 
@@ -31,7 +34,7 @@
 						<button class="icon" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
 				</div>
 				<div class="bottomrow">
-					{character.initiativeModifier}
+					{withSign(character.initiativeModifier)}
 					<div class="bottomrow-label">Initiative Modifier</div>
 				</div>
 			</div>
@@ -47,7 +50,7 @@
 								{character.characterName}
 						</div>
 						<div class="bottomrow">
-							{character.initiativeModifier}
+							{withSign(character.initiativeModifier)}
 							<div class="bottomrow-label">Initiative Modifier</div>
 						</div>
 					</div>
@@ -59,7 +62,7 @@
 								{character.characterName}
 						</div>
 						<div class="bottomrow">
-							{character.roll}+{character.initiativeModifier}
+							{character.roll} {withSign(character.initiativeModifier, true)}
 							<div class="bottomrow-label">Your Roll</div>
 						</div>
 					</div>

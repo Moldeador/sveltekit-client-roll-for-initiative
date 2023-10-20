@@ -2,6 +2,7 @@
     export let charactersData;
     export let roomState;
     $: if (roomState==="turnOrder") charactersData.sort((a,b)=>a["turnOrder"]-b["turnOrder"]);
+	function withSign(n, withSpace) { return `${n < 0 ? '-' : '+'}${withSpace ? ' ' : ''}${Math.abs(n)}`; }
 </script>
 
 <div class="charactersHolder">
@@ -10,13 +11,13 @@
             <div class="toprow">{character.characterName}</div>
             {#if character.roll===null}
                 <div class="bottomrow">
-                    {character.initiativeModifier}
+                    {withSign(character.initiativeModifier)}
                     <div class="bottomrow-label">Init. Mod.</div>
                 </div>
             {:else if character.turnOrder===null}
 
                 <div class="bottomrow">
-                    {character.roll} + {character.initiativeModifier}
+                    {character.roll} {withSign(character.initiativeModifier, true)}
                     <div class="bottomrow-label">Roll</div>
                 </div>
             {:else}
