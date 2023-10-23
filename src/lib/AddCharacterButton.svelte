@@ -8,13 +8,14 @@
  
     function handleAddCharacter(){
 		$userData["characters"].push({characterName:"", initiativeModifier:0});
+		$userData = $userData;
 		characterId = numberOfCharacters;
 		showModal();
 	}
 
 </script>
 
-<button on:click={handleAddCharacter} title="Add an extra character"><i class="fa-solid fa-spaghetti-monster-flying"></i></button>
+<button on:click={handleAddCharacter} title="Add an extra character"><i class="fa-solid fa-person-circle-plus"></i></button>
 
 <style>
 
