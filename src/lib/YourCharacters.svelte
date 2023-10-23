@@ -12,7 +12,11 @@
 	}
 
 	function handleDeleteCharacter(id){
-		$userData["characters"].splice(id, 1);
+		if ($userData["characters"].length === 1){
+			$userData["characters"] = [{characterName:"",initiativeModifier:0}];
+		} else if ($userData["characters"].length > 1){
+			$userData["characters"].splice(id, 1);
+		}
 		$userData = $userData;
 	}
 
