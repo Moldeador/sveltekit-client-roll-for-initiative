@@ -42,7 +42,7 @@
   <div class="background-pic"></div>
 	<div class="topNavigation">
 		<HomeButton />
-		<p>Roll for initiative!</p>
+		<h2>Roll for initiative</h2>
 		<AddCharacterButton {showModal} bind:characterId/>
 	</div>
 
@@ -67,14 +67,13 @@
 		height: 100%;
 	}
     .topNavigation{
-		flex: 0 0 3em;
+		flex: 0 0 ;
 		display: flex;
 		justify-content: space-between;
-		align-items: flex-start;
-		font-size: x-large;
-		justify-content: space-between;
-		align-items: flex-start;
-
+		align-items: center;
+		background-color: #00000050;
+		border: 1px solid white;
+		margin-bottom: 20px;
     }
 
 	.center{
@@ -85,10 +84,11 @@
 
 	.stateOfGame{
 		flex: 0 0 3em;
+		margin: 20px;
 	}
 
 	.listOfUsers{
-		flex: 0 0 8em;
+		flex: 0 0 6em;
 	}
 	.background-pic {
 		position: absolute;

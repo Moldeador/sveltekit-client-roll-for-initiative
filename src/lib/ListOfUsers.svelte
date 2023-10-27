@@ -40,10 +40,11 @@
     align-items: center;
     gap: 10px;
     overflow-x: auto;
-    background-color: var(--colour-dark);
+    background-color: #00000050;
 }
 
 .character{
+    font-size: 11px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -51,7 +52,7 @@
     width: 70px;
     height: 70px;
     flex-shrink: 0;
-    background-color: var(--colour-light);
+    background-color: #ffffff25;
 }
 
 .character:first-child{
@@ -67,7 +68,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--colour-dark);
 }
 
 .bottomrow{
@@ -78,15 +78,14 @@
     justify-content: center;
     flex-grow: 1;
     font-size: 1em;    
-    color: var(--colour-dark);
 }
 
 .bottomrow-label{
   position: absolute;
-  font-size: xx-small;
+  font-size: 8px;
   bottom: 0;
-  background-color: var(--colour-dark);
-  color: var(--colour-light);
+  background-color: white;
+  color: black;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   padding-left: 5px;
