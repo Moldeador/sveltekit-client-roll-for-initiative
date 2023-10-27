@@ -33,9 +33,9 @@
 			<section>
 			<div class="character">
 				<div class="toprow">
-						<button class="corner-button" on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-wand-sparkles"></i></button>
+						<button class="corner-button top-left" on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-wand-sparkles"></i></button>
 						{character.characterName}
-						<button class="corner-button" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
+						<button class="corner-button top-right" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
 				</div>
 				<div class="bottomrow">
 					{withSign(character.initiativeModifier)}
@@ -109,7 +109,7 @@
   		align-items: center;
 	}
 	.character{
-		border-radius: 3px;
+		border-radius: 10px;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
@@ -124,7 +124,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		font-size: x-large;
+		font-size: large;
 	}
 
 	.toprow.no-buttons{
@@ -138,8 +138,9 @@
 		align-items: center;
 		justify-content: center;
 		flex-grow: 1;
-		font-size: 4em;    
+		font-size: 3em;    
 		padding-bottom: 24px;
+		font-family: 'Bungee Shade', sans-serif;
 	}
 
 	.bottomrow-label{
@@ -152,9 +153,18 @@
 		border-top-left-radius: 5px;
 		padding-left: 5px;
 		padding-right: 5px;
+		font-family: 'Sen Variable', sans-serif;
 
 	}
 
+	.corner-button.top-left{
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 5px;
+	}
+	.corner-button.top-right{
+		border-top-right-radius: 10px;
+		border-bottom-left-radius: 5px;
+	}
 
 i{
 	font-size: small;
