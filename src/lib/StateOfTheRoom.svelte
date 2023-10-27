@@ -61,9 +61,6 @@
     gap: 10px;
 }
 
-button{
-    background-color: var(--colour-shadow);
-    color: var(--colour-white)
-}
+
 
 </style>

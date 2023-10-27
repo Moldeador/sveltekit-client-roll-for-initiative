@@ -76,3 +76,17 @@ button:active {
     font-size: 3em;
   }
 }
+
+.corner-button{
+	display: flex;
+	flex-grow: 0;
+	align-items: center;
+	padding: 0.4em 0.4em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px;
+}
+
+.corner-button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 2px;
+  left: 2px;
+}
