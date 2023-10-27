@@ -79,6 +79,11 @@ button:active {
   left: 5px;
 }
 
+button.inverted {
+  color: rgb(85, 85, 85);
+  border-color: rgb(85, 85, 85);
+}
+
 @media (min-width: 768px) {
   h1{
     font-size: 3em;
@@ -100,3 +105,8 @@ button:active {
   top: 2px;
   left: 2px;
 }
+
+dialog{
+    background-color: #dcdcdc;
+}
+
