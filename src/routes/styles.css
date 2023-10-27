@@ -89,9 +89,10 @@ button:active {
 	display: flex;
 	flex-grow: 0;
 	align-items: center;
-  border: 1px solid white;
+  border: 0 solid white;
 	padding: 0.4em 0.4em;
   box-shadow: 0 0 0 0;
+  background-color: #ffffff50;
 }
 
 .corner-button:active {

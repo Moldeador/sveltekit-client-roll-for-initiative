@@ -33,9 +33,9 @@
 			<section>
 			<div class="character">
 				<div class="toprow">
-						<button class="icon" on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-wand-sparkles"></i></button>
+						<button class="corner-button" on:click={()=>handleEditCharacter(index)}><i class="fa-solid fa-wand-sparkles"></i></button>
 						{character.characterName}
-						<button class="icon" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
+						<button class="corner-button" on:click={()=>handleDeleteCharacter(index)}><i class="fa-solid fa-skull"></i></button>
 				</div>
 				<div class="bottomrow">
 					{withSign(character.initiativeModifier)}
@@ -117,8 +117,7 @@
 		max-height: 300px;
 		width: 100%;
 		height: 100%;
-		background-color: var(--colour-light);
-		color: var(--colour-dark)
+		background-color: #00000050;
 	}
 
 	.toprow{
@@ -126,7 +125,6 @@
 		justify-content: space-between;
 		align-items: flex-start;
 		font-size: x-large;
-		color: var(--colour-shadow)
 	}
 
 	.toprow.no-buttons{
@@ -142,15 +140,14 @@
 		flex-grow: 1;
 		font-size: 4em;    
 		padding-bottom: 24px;
-		color: var(--colour-dark)
 	}
 
 	.bottomrow-label{
 		position: absolute;
 		font-size:small;
 		bottom: -2px;
-		background-color: var(--colour-dark);
-		color: var(--colour-light);
+		background-color: #ffffff50;
+		color: white;
 		border-top-right-radius: 5px;
 		border-top-left-radius: 5px;
 		padding-left: 5px;
@@ -159,19 +156,8 @@
 	}
 
 
-button{
-    background-color: var(--colour-shadow);
-    color: var(--colour-ligth);
-	display: flex;
-	flex-grow: 0;
-	align-items: center;
-	padding: 0.4em 0.4em;
-	border-radius: 3px;
-}
-
 i{
 	font-size: small;
-	color: var(--colour-light)
 }
 
     

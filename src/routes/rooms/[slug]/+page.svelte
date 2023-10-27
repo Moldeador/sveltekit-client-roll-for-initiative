@@ -72,7 +72,6 @@
 		justify-content: space-between;
 		align-items: center;
 		background-color: #00000050;
-		border: 1px solid white;
 		margin-bottom: 20px;
     }
 
