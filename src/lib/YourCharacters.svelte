@@ -124,7 +124,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
-		font-size: large;
+		font-size: x-large;
 	}
 
 	.toprow.no-buttons{
@@ -138,9 +138,8 @@
 		align-items: center;
 		justify-content: center;
 		flex-grow: 1;
-		font-size: 3em;    
+		font-size: 60px;    
 		padding-bottom: 24px;
-		font-family: 'Bungee Shade', sans-serif;
 	}
 
 	.bottomrow-label{

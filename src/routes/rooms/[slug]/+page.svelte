@@ -79,6 +79,7 @@
 		display: flex;
 		flex-flow: column;
 		flex-grow: 1;
+		overflow-y: auto;
 	}
 
 	.stateOfGame{
