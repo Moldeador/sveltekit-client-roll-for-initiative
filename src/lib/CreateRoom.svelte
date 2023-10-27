@@ -9,6 +9,6 @@
 
 </script>
 
-<button on:click={createRoom}>
-    Create new encounter
+<button  class="button-54" on:click={createRoom}>
+    Create  new <br/>encounter
 </button>
