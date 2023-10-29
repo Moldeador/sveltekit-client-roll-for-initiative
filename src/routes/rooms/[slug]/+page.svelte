@@ -9,6 +9,7 @@
     import { onMount } from 'svelte';
     import YourCharacters from '$lib/YourCharacters.svelte';
     import AddCharacterButton from '$lib/AddCharacterButton.svelte';
+	import HelpButton from '$lib/HelpButton.svelte'
 
 	let showModal;
 	let closeModal;
@@ -43,7 +44,12 @@
 	<div class="topNavigation">
 		<HomeButton />
 		<h2>Roll for initiative</h2>
-		<AddCharacterButton {showModal} bind:characterId/>
+		<div class="top-right-buttons">
+			<HelpButton showHelp={showModal}/>
+			<div class="top-right-button">
+				<AddCharacterButton {showModal} bind:characterId />
+			</div>
+		</div>
 	</div>
 
 	<div class="center">
@@ -74,7 +80,13 @@
 		background-color: #00000050;
 		margin-bottom: 20px;
     }
-
+	.top-right-buttons{
+		display: flex;
+		justify-content: space-between;
+	}
+	.top-right-button{
+		margin-left: 2px;
+	}
 	.center{
 		display: flex;
 		flex-flow: column;
