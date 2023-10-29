@@ -10,10 +10,13 @@
     import YourCharacters from '$lib/YourCharacters.svelte';
     import AddCharacterButton from '$lib/AddCharacterButton.svelte';
 	import HelpButton from '$lib/HelpButton.svelte'
+    import HelpInfo from '$lib/HelpInfo.svelte';
 
 	let showModal;
 	let closeModal;
 
+	let showHelp;
+	let closeHelp;
 	onMount(() => {
 		if ($userData.characters[0].characterName==='') {
 			showModal();
@@ -37,7 +40,12 @@
 	<Login on:submit={closeModal} {characterId}/>
 </Modal>
 
+<Modal bind:showModal={showHelp} bind:closeModal={closeHelp}>
+	<HelpInfo />
+</Modal>
+
 <Socket bind:charactersData bind:roomState bind:sendDataToServer bind:isAdmin />
+
 
 <div class="room-page-holder">
   <div class="background-pic"></div>
@@ -45,7 +53,7 @@
 		<HomeButton />
 		<h2>Roll for initiative</h2>
 		<div class="top-right-buttons">
-			<HelpButton showHelp={showModal}/>
+			<HelpButton {showHelp}/>
 			<div class="top-right-button">
 				<AddCharacterButton {showModal} bind:characterId />
 			</div>
