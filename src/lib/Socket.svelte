@@ -1,6 +1,7 @@
 <script>
     import userData from "$lib/userData"
-    
+    import {goto} from '$app/navigation'
+
     //Websocekt variables
     const pathname = window.location.pathname;
     console.log(`protocol: ${location.protocol}`);
@@ -35,6 +36,10 @@
         } else if (receivedMessageObject.event === "youAreAdmin"){
             isAdmin = true;
         }
+    }
+
+    mywsServer.onerror = function(){
+        goto("/");
     }
 
     //Creating DOM element to show received messages on browser page
