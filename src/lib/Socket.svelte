@@ -1,6 +1,7 @@
 <script>
     import userData from "$lib/userData"
     import {goto} from '$app/navigation'
+    import { onMount } from "svelte";
 
     //Websocekt variables
     const pathname = window.location.pathname;
@@ -9,38 +10,45 @@
     const port = (location.hostname==='rollforinitiative.goblinarchive.com') ? '/api' : ':3000'; 
     const socketUrl = `${protocol}//${location.hostname}${port}${pathname}`;
 
-    const mywsServer = new WebSocket(socketUrl)
-    let myMessages = []
+    let mywsServer; 
+    let myMessages = [];
     let isWebSocketConnected = false;
     export let charactersData;
     export let roomState;
     export let isAdmin = false;
 
 
-    
+    onMount(function(){
+        mywsServer = new WebSocket(socketUrl)
 
-    //enabling send message when connection is open
-    mywsServer.onopen = function() {
-        console.log("connected!")
-        isWebSocketConnected = true;
-    }
-    //handling message event
-    mywsServer.onmessage = function(event) {
-        const { data } = event
-        msgGeneration(data, "Server")
-        const receivedMessageObject = JSON.parse(data);
-        if (receivedMessageObject.event === "listOfCharacters"){
-            charactersData = receivedMessageObject["data"];
-        } else if (receivedMessageObject.event === "roomState"){
-            roomState = receivedMessageObject["data"];
-        } else if (receivedMessageObject.event === "youAreAdmin"){
-            isAdmin = true;
+        //enabling send message when connection is open
+        mywsServer.onopen = function() {
+            console.log("connected!")
+            isWebSocketConnected = true;
         }
-    }
+        //handling message event
+        mywsServer.onmessage = function(event) {
+            const { data } = event
+            msgGeneration(data, "Server")
+            const receivedMessageObject = JSON.parse(data);
+            if (receivedMessageObject.event === "listOfCharacters"){
+                charactersData = receivedMessageObject["data"];
+            } else if (receivedMessageObject.event === "roomState"){
+                roomState = receivedMessageObject["data"];
+            } else if (receivedMessageObject.event === "youAreAdmin"){
+                isAdmin = true;
+            }
+        }
 
-    mywsServer.onerror = function(){
-        goto("/");
-    }
+        mywsServer.onerror = function(){
+            goto("/");
+        }       
+        return function(){
+            mywsServer.close();
+        }
+    })
+
+
 
     //Creating DOM element to show received messages on browser page
     function msgGeneration(msg, from) {
