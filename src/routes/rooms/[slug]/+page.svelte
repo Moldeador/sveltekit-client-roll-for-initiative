@@ -93,7 +93,7 @@
 		justify-content: space-between;
 	}
 	.top-right-button{
-		margin-left: 2px;
+		margin-left: 10px;
 	}
 	.center{
 		display: flex;
